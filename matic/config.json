@@ -1,0 +1,9 @@
+{
+  "schemas": "../schemas/",
+  "target": "../docs/",
+  "template": {
+    "path": "templates/",
+    "file": "home",
+    "lib": "jade"
+  }
+}
