@@ -1,6 +1,7 @@
 {
   "schemas": "../schemas/",
   "target": "../docs/",
+  "suffix": ".md",
   "template": {
     "path": "templates/",
     "file": "home",

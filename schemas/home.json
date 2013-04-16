@@ -1,0 +1,8 @@
+{
+  "name": "home",
+  "description": "This might be a bit crazy",
+  "properties": {
+    "thing": "value",
+    "otherThing": "value"
+  }
+}
