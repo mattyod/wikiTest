@@ -1,2 +1,25 @@
 :markdown
   # Home
+
+  ## API Endpoints
+
+  - [[/authToken|authToken]]
+      (POST a username/password, to receive an auth token for subsequent requests)
+  - [[/hubs/:hubID|hubs/%3AhubID]]
+      (Retreive Data about a Hub)
+  - [[/devices/:deviceID|devices/%3AdeviceID]]
+      (Retreive Data about a Device)
+  - [[/devices/:deviceID/history|devices/%3AdeviceID/history]]
+      (Retreive historic events of a device)
+
+  ## Common Pages
+
+  - [[Common Errors|common-errors]] given back by the api
+  - [[What to do when a token expires|token-expiry]]
+
+
+  ## Notes
+
+  Endpoints should return json by default, if an accepts header is sent as text/html or a .html extension is added then output the docs for that call.
+
+  API should be RESTful - endpoints are nouns, JSON as payload etc.

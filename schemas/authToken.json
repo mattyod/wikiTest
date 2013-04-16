@@ -1,0 +1,17 @@
+{
+  "name": "authToken",
+  "description": "lorum ipsum dolor sit amet...",
+  "items": {
+    "request": {
+      "name": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      }
+    },
+    "response": {
+      "key": "string"
+    }
+  }
+}

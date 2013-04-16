@@ -3,6 +3,7 @@
   "target": "../docs/",
   "suffix": ".md",
   "template": {
+    "folder": "templates",
     "path": "templates/",
     "file": "home",
     "lib": "jade"
