@@ -1,2 +1,13 @@
-each item in items.request
-  item
+pre
+  code
+    |{
+    each item, key in items.request
+      | 
+      |   "#{key}": {
+      | 
+      each prop, type in item
+        |    "!{type}": "!{prop}"
+      | 
+      |   }
+    | 
+    |}
