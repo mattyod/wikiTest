@@ -1,47 +1,68 @@
+//- Base indentation set this in conjunction with indent in codeBlock mixin for
+//- even indentation
 - var baseIndent = '  ';
 
+//- Adds a comma or optional supplied seperator if the index is less than the
+//- length. Useful for rendering JSON objects or lists.
 mixin sep(index, length, seperator)
   if !seperator
+    //- If no seperator is supplied use a comma by default
     - seperator = ','
   if index < length
     !{seperator}
 
+//- Render an array of strings, numbers or objects
 mixin array(arr, indent)
   |[
   each item, index in arr
-    if typeof item === 'string'
-      |"#{item}"
-    if typeof item === 'number'
-      |#{item}
-    if typeof item === 'object'
-      |{
-      +object(item, indent + baseIndent)
-      | 
-      |!{indent} }
+    case typeof item
+        when 'string'
+            //- Wrap strings in quotes
+            |"#{item}"
+        when 'object'
+            //- Render objects using the object mixin
+            |{
+            +object(item, indent + baseIndent)
+            | 
+            |!{indent}}
+        default
+            //- Otherwise just render the item
+            |#{item}
+    //- Add a comma to all but the last item in the array
     +sep(index +1, arr.length, ', ')
   |]
 
+//- Recursively generate indented json objects
 mixin object(obj, indent)
-  - var length = 0;
-  - var count = 0;
+  - var length = Object.keys(obj).length;
+  - var index = 0;
   for val, key in obj
-    - length++
-  for val, key in obj
-    - count++
+    //- Keep track of where we are within the object
+    - index++
     | 
-    | 
+    |!{indent}
+    case typeof val
+      when 'object'
+        if Array.isArray(val)
+          //- Use the array mixin for array objects
+          |"!{key}": 
+          +array(val, indent)
+        else
+          //- Otherwise turtle on down with a new call to the object mixin
+          |"!{key}": {
+          +object(val, indent + baseIndent)
+      when 'string'
+        //- Wrap strings in quotes
+        |"!{key}": "!{val}"
+      default
+        //- Just render Booleans and numbers as is
+        |"!{key}": !{val}
+    
+    //- Close our objects and add comma if needed
     if typeof val === 'object'
-      if val.length
-        |!{indent}"!{key}": 
-        +array(val, indent)
-      else
-        |!{indent}"!{key}": {
-        +object(val, indent + baseIndent)
-    else
-      |!{indent}"!{key}": "!{val}"
-      +sep(count, length)
-    if typeof val === 'object'
-      if !val.length
+      if !Array.isArray(val)
         | 
-        |!{indent} }
-      +sep(count, length)
+        |!{indent}}
+        
+    //- Add trailing comma if needed
+    +sep(index, length)
