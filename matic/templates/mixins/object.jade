@@ -1,0 +1,47 @@
+- var baseIndent = '  ';
+
+mixin sep(index, length, seperator)
+  if !seperator
+    - seperator = ','
+  if index < length
+    !{seperator}
+
+mixin array(arr, indent)
+  |[
+  each item, index in arr
+    if typeof item === 'string'
+      |"#{item}"
+    if typeof item === 'number'
+      |#{item}
+    if typeof item === 'object'
+      |{
+      +object(item, indent + baseIndent)
+      | 
+      |!{indent} }
+    +sep(index +1, arr.length, ', ')
+  |]
+
+mixin object(obj, indent)
+  - var length = 0;
+  - var count = 0;
+  for val, key in obj
+    - length++
+  for val, key in obj
+    - count++
+    | 
+    | 
+    if typeof val === 'object'
+      if val.length
+        |!{indent}"!{key}": 
+        +array(val, indent)
+      else
+        |!{indent}"!{key}": {
+        +object(val, indent + baseIndent)
+    else
+      |!{indent}"!{key}": "!{val}"
+      +sep(count, length)
+    if typeof val === 'object'
+      if !val.length
+        | 
+        |!{indent} }
+      +sep(count, length)

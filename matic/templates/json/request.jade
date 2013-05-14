@@ -6,6 +6,9 @@ pre
       |   "#{key}": {
       | 
       each prop, type in item
+        if (typeof prop === 'object')
+          include ./object(prop)
+        else
         |    "!{type}": "!{prop}"
       | 
       |   }

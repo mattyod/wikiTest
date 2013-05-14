@@ -1,0 +1,11 @@
+include object
+
+- var indent = '  '
+
+mixin codeBlock(obj)
+  pre
+    code
+      |{
+      +object(obj, indent)
+      | 
+      |}

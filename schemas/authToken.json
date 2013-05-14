@@ -4,14 +4,38 @@
   "items": {
     "request": {
       "name": {
-        "type": "string"
+        "type": "string",
+        "value": "Matt"
       },
       "password": {
         "type": "string"
+      },
+      "thing": {
+        "otherthing": {
+          "property": "hasValue"
+        }
       }
     },
     "response": {
-      "key": "string"
+      "thing": "string",
+      "arrayOfStrings": ["one", "two", "three"],
+      "arrayOfNumbers": [1, 2, 3],
+      "arrayOfObjects": [
+        {"object1": {
+            "thing": "has a thing"
+          }
+        },
+        {"object2": {
+            "thing": "also has a thing"
+          }
+        },
+        {"object3": {
+            "thing": "has a thing",
+            "anotherThing": "or two"
+          }
+        }
+      ],
+      "anotherThing": "abcdefg"
     }
   }
 }
