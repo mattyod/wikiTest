@@ -18,6 +18,8 @@
     },
     "response": {
       "thing": "string",
+      "boolean": false,
+      "number": 7,
       "arrayOfStrings": ["one", "two", "three"],
       "arrayOfNumbers": [1, 2, 3],
       "arrayOfObjects": [
