@@ -28,7 +28,7 @@ mixin array(arr, indent)
         default
             //- Otherwise just render the item
             |#{item}
-    //- Add a comma to all but the last item in the array
+    //- Add a comma & space to all but the last item in the array
     +sep(index +1, arr.length, ', ')
   |]
 
@@ -63,6 +63,6 @@ mixin object(obj, indent)
       if !Array.isArray(val)
         | 
         |!{indent}}
-        
+
     //- Add trailing comma if needed
     +sep(index, length)
